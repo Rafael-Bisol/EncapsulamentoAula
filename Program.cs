@@ -6,7 +6,8 @@ namespace EncapsulamentoAula
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Produto Livro1 = new Produto("Aprenda C# hoje!", 10, 99.99);
+            Console.WriteLine(Livro1.GetNome());
         }
     }
 }
