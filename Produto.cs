@@ -40,6 +40,7 @@ namespace EncapsulamentoAula
             Preco = preco;
             Quantidade = 1;
         }
+        
         public Produto(string nome, double preco, int quant) : this(nome, preco){
             Quantidade = quant;
         }
