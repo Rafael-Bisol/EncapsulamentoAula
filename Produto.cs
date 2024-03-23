@@ -4,57 +4,49 @@ namespace EncapsulamentoAula
 {
     public class Produto
     {
-        private string _nome;
-        private int _quant;
-        private double _preco;
+        private string _nome; // Atributo
+        private double _preco; // Atributo
+        public int Quantidade2{get; set;} // Propriedade
+        public int Quantidade{get; private set;} // Não vai conseguir mudar o valor, só ler
 
-        public Produto(string nome, int quant, double preco){
-            _nome = nome;
-            _quant = quant;
-            _preco = preco;
-        }
-
-        public string GetNome(){
-            return _nome;
-        }
-        
-        public void SetNome(string nome){
-            if (string.IsNullOrWhiteSpace(nome) || nome.Length < 3) {
-                return;
-            } else {
-                _nome = nome;
+        public string Nome
+        {
+            get {
+                return _nome;
+            }
+            set {
+                if (string.IsNullOrWhiteSpace(value) || value.Length < 3) {
+                    Console.WriteLine("Nome nulo ou com menos de 3 caracteres.");
+                    return;
+                }
+                _nome = value;
             }
         }
 
-        public int GetQuantidade(){
-            return _quant;
-        }
-
-        public void SetQuantidade(int quant){
-            if (quant < 0){
-                Console.WriteLine("Erro. Quantidade não pode ser negativa.");
-                return;
-            } else {
-                _quant = quant;
+        public double Preco
+        {
+            get { return _preco; }
+            set {
+                if (value < 0) {
+                    Console.WriteLine("Preço não pode ser negativo.");
+                    return;
+                }
+                _preco = value;
             }
         }
 
-        public double GetPreco(){
-            return _preco;
+        public Produto(string nome, double preco){
+            Nome = nome;
+            Preco = preco;
+            Quantidade = 1;
         }
-
-        public void SetPreco(double preco){
-            if (preco < 0){
-                Console.WriteLine("Erro. Preço não pode ser negativo.");
-                return;
-            } else {
-                _preco = preco;
-            }
+        public Produto(string nome, double preco, int quant) : this(nome, preco){
+            Quantidade = quant;
         }
 
         public override string ToString()
         {
-            return $"LIVRO\n\tNome: {_nome}\n\tPreço Unitário: {_preco}\n\tQuantidade: {_quant}";
+            return $"LIVRO\n\tNome: {_nome}\n\tPreço Unitário: {_preco}\n\tQuantidade: {Quantidade}";
         }
     }
 }
